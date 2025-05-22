@@ -2,7 +2,7 @@
 
 ##   This file is intended to serve as a template to be downloaded and modified for your use case.
 ##   For more information, refer to the following resources whenever referenced in the script-
-##   README- https://github.com/ubccr/ccr-examples/tree/main/slurm/2_Applications/matlab/README.md
+##   README- https://github.com/ubccr/ccr-examples/tree/main/slurm/README.md
 ##   DOCUMENTATION- https://docs.ccr.buffalo.edu/en/latest/hpc/jobs
 
 ##   Select a cluster, partition, qos and account that is appropriate for your use case
@@ -33,6 +33,8 @@
 #SBATCH --mail-type=all
 #SBATCH --mail-user=UBITusername@buffalo.edu
 
+##   Load the matlab software module
 module load matlab/2023b
 
+##   Run your multithreaded matlab command
 matlab -nodisplay -nosplash -r for_loop

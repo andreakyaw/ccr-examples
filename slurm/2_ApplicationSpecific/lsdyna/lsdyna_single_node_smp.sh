@@ -15,26 +15,33 @@
 ##   Job runtime limit. Format- dd:hh:mm
 #SBATCH --time=00:01:00
 
-##   Refer to DOCUMENTATION for details on the next four directives
+##   Refer to DOCUMENTATION for details on the next three directives
 
 ##   Number of nodes
 #SBATCH --nodes=1
 
-##   Specify the number of tasks (for parallelism)
-#SBATCH --ntasks=1
-
-##   Allocate CPUs per task (>1 if multi-threaded tasks)
+##   Allocate CPUs per task
 #SBATCH --cpus-per-task=1
 
-##   Memory per cpu-core (4G per cpu-core is default)
-#SBATCH --mem-per-cpu=4G
+##   Number of "tasks" per node (use with distributed parallelism)
+#SBATCH --ntasks-per-node=24
 
-##   Send email on job start, end, fault and a Valid email for Slurm to send notifications - "mail-user"
-#SBATCH --mail-type=all
-#SBATCH --mail-user=UBITusername@buffalo.edu
+##   Specify real memory required per node. Default units are megabytes
+#SBATCH --mem=64000
 
-##   Load the matlab software module
-module load matlab/2023b
+module load ansys
+export LSTC_LICENSE=ansys
+echo $SLURM_NPROCS
 
-##   Run your matlab command, specified as serial by the -singleCompThread flag
-matlab -singleCompThread -nodisplay -nosplash -r hello_world
+##   Replace with your model file name
+MODEL=ball_and_plate.k
+
+##   For single precision use this
+$EBROOTANSYS/v231/ansys/bin/linx64/lsdyna_sp.e ncpus=$SLURM_NPROCS i=$MODEL
+
+##   For double precision use this, uncommenting the next line and commenting out the line above
+#$EBROOTANSYS/v231/ansys/bin/linx64/lsdyna_dp.e ncpus=$SLURM_NPROCS i=$MODEL
+
+echo 'all done'
+exit
+

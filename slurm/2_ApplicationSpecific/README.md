@@ -2,17 +2,19 @@
 
 ## Using these examples
 
-This directory contains batch scripts for a variety of applications that have special setup requirements.  You will not find an example script for every piece of software installed on CCR's systems.  These examples should be used as guidance and are not set in stone.  Please start with these examples, test for your own use case, and scale as required.  
+This directory contains batch scripts for a variety of applications that have special setup requirements.  You will not find an example script for every piece of software installed on CCR's systems.  These examples should be used as guidance and are not set in stone.  Please start with these examples, test for your own use case, and scale as required.
 
-For additional SLURM directives, refer to [slurm-options.sh](../slurm-options.sh) 
+## Table of Topics
 
-## Placeholders:
+| Topic                                | Description |
+|--------------------------------------|------------------------|
+| [AlphaFold](./alphafold)                | AlphFold example including a dataset for testing and validation |
+| [LSDYNA](./lsdyna)                      | LSDYNA examples for both single and multi node message passing parallel jobs as well as single node shared memory parallel jobs (See [README](./lsdyna/README.md) for details) |
+| [MATLAB](./matlab)                      | The MATLAB directory includes example bash scripts and MATLAB functions for running [serial](./matlab/serial), [multithreaded](./matlab/multithreaded), and [GPU](./matlab/GPU) MATLAB jobs |
+| [Python](./python)                      | The Python directory includes examples bash scripts and Python functions for [serial](./python/serial) Python job, with multithreaded and GPU examples coming soon |
 
-Portions of the example batch scripts which must be changed for the script to function are referred to as placeholders and denoted by square brackets. Replace the following placeholders in your script with details specific to your use case before submitting your job.
+## Additional Information
 
-- `[cluster]`: ub-hpc, faculty
-- `[partition]`: general-compute, debug, industry, scavenger, ub-laser, [other available options](https://docs.ccr.buffalo.edu/en/latest/hpc/clusters/#ub-hpc-compute-cluster)
-- `[qos]`: usually the same as `[partition]` - refer to [CCR docs](https://docs.ccr.buffalo.edu/en/latest/hpc/jobs/#slurm-directives-partitions-qos)
-- `[SlurmAccountName]`: Tell Slurm which account to run this job under. If not specified, your default account will be used. Use the `slimits` command to see what accounts you have access to.
-
-
+- The [Slurm README](../README.md) provides details on general Slurm usage.
+- The [Placeholders](../README.md#placeholders) section lists the available options for each placeholder used in the example scripts.
+- The [slurm-options.sh](../slurm-options.sh) file outlines commonly used `#SBATCH` directives with their descriptions.
