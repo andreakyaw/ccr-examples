@@ -18,8 +18,8 @@ if __name__ == "__main__":
     print("Serial execution time:", end-start)
 
     print("Parallel using joblib:")
-    for n_jobs in [1,2,4,8,16,32,64]:
+    for n_jobs in [1,2,4,8,16,32]:
         start = time.time()
         results = Parallel(n_jobs=n_jobs)(delayed(fib)(n) for n in my_values)
         end = time.time()
-        print("Joblib execution time:", end-start)
+        print("Joblib execution time with n_jobs = " n_jobs: end-start)
