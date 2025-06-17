@@ -1,5 +1,6 @@
 import time
-from joblib import Parallel, delayed
+from multiprocessing import Pool
+
 def fib(n: int) -> int:
     a, b = 0, 1
     count = 0
@@ -20,6 +21,7 @@ if __name__ == "__main__":
     print("Parallel using joblib:")
     for n_jobs in [1,2,4,8,16,32]:
         start = time.time()
-        results = Parallel(n_jobs=n_jobs)(delayed(fib)(n) for n in my_values)
+        with Pool(n_jobs) as p:
+            p.map(fib, my_values)
         end = time.time()
         print(f"Joblib execution time with n_jobs = {n_jobs}: {end - start}")
