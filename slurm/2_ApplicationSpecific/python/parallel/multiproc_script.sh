@@ -11,7 +11,7 @@
 #SBATCH --output=my-8cpu-job_%j.out
 #SBATCH --mail-user=[yourname]@buffalo.edu
 #SBATCH --mail-type=END
-module load gcc
-module load python
-python fibonacci_joblib.py
+
+module load gcc python
+python fibonacci_multiproc.py
 echo "Job ended at $(date)"
